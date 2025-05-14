@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2698,7 +2697,7 @@ Transform:
   m_GameObject: {fileID: 684344549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70563114, w: 0.7085794}
-  m_LocalPosition: {x: 84.2, y: -38.4, z: 0}
+  m_LocalPosition: {x: 82.18, y: -35.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2730,7 +2729,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &684344554
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2815,10 +2814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0cf3d5408077d4bbf482cc3ee0584d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 20
-  deceleration: 20
-  maxSpeed: 50
-  rotationSpeed: 720
+  acceleration: 10
+  deceleration: 10
+  maxSpeed: 30
+  turnSpeed: 40
 --- !u!1 &726541103
 GameObject:
   m_ObjectHideFlags: 0

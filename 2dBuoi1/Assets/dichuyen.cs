@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class dichuyen : MonoBehaviour
 {
-    public float acceleration = 10f;
-    public float deceleration = 10f;
-    public float maxSpeed = 5f;
-    public float rotationSpeed = 720f; // độ/giây
+    public float acceleration = 5f;
+    public float deceleration = 5f;
+    public float maxSpeed = 10f;
+    public float turnSpeed = 100f; // độ/giây
 
     private Rigidbody2D rb;
-    private Vector2 moveInput;
-    private Vector2 currentVelocity;
+    private float moveInput; // W/S
+    private float turnInput; // A/D
+    private float currentSpeed;
+
 
 
     private void Start()
@@ -20,27 +22,31 @@ public class dichuyen : MonoBehaviour
     }
     private void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        moveInput = new Vector2(moveX, moveY).normalized;
+        moveInput = Input.GetAxisRaw("Vertical");   // W = 1, S = -1
+        turnInput = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
     }
     private void FixedUpdate()
     {
-        if (moveInput != Vector2.zero)
+        if (moveInput != 0)
         {
-            currentVelocity = Vector2.MoveTowards(currentVelocity, moveInput * maxSpeed, acceleration * Time.fixedDeltaTime);
-
-            // Quay đầu xe theo hướng di chuyển
-            float angle = Mathf.Atan2(currentVelocity.y, currentVelocity.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
+            currentSpeed += moveInput * acceleration * Time.fixedDeltaTime;
         }
         else
         {
-            currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
         }
 
-        rb.velocity = currentVelocity;
+        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
+
+        // Rẽ trái/phải chỉ khi xe đang di chuyển
+        if (Mathf.Abs(currentSpeed) > 0.1f)
+        {
+            float direction = currentSpeed > 0 ? 1 : -1; // rẽ ngược nếu đang lùi
+            transform.Rotate(Vector3.forward, -turnInput * turnSpeed * Time.fixedDeltaTime * direction);
+        }
+
+        // Di chuyển theo hướng đầu xe
+        rb.velocity = transform.right * currentSpeed;
     }
 }
+
