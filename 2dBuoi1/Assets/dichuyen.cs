@@ -10,8 +10,8 @@ public class dichuyen : MonoBehaviour
     public float turnSpeed = 100f; // độ/giây
 
     private Rigidbody2D rb;
-    private float moveInput; // W/S
-    private float turnInput; // A/D
+    private float dithang; // W/S
+    private float rehuong; // A/D
     private float currentSpeed;
 
 
@@ -22,14 +22,14 @@ public class dichuyen : MonoBehaviour
     }
     private void Update()
     {
-        moveInput = Input.GetAxisRaw("Vertical");   // W = 1, S = -1
-        turnInput = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
+        dithang = Input.GetAxisRaw("Vertical");   // W = 1, S = -1
+        rehuong = Input.GetAxisRaw("Horizontal"); // A = -1, D = 1
     }
     private void FixedUpdate()
     {
-        if (moveInput != 0)
+        if (dithang != 0)
         {
-            currentSpeed += moveInput * acceleration * Time.fixedDeltaTime;
+            currentSpeed += dithang * acceleration * Time.fixedDeltaTime;
         }
         else
         {
@@ -42,7 +42,7 @@ public class dichuyen : MonoBehaviour
         if (Mathf.Abs(currentSpeed) > 0.1f)
         {
             float direction = currentSpeed > 0 ? 1 : -1; // rẽ ngược nếu đang lùi
-            transform.Rotate(Vector3.forward, -turnInput * turnSpeed * Time.fixedDeltaTime * direction);
+            transform.Rotate(Vector3.forward, -rehuong * turnSpeed * Time.fixedDeltaTime * direction);
         }
 
         // Di chuyển theo hướng đầu xe
