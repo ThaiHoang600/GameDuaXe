@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class dichuyen : MonoBehaviour
 {
-    public float acceleration = 5f;
-    public float deceleration = 5f;
+    public float acceleration = 180f;
+    public float deceleration = 180f;
     public float maxSpeed = 10f;
     public float turnSpeed = 100f; // độ/giây
 
