@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class dichuyen : MonoBehaviour
 {
-    public float acceleration = 180f;
-    public float deceleration = 180f;
+    public float giatoc = 2f;
+    public float phanhxe = 180f;
     public float maxSpeed = 10f;
-    public float turnSpeed = 100f; // độ/giây
+    public float turnSpeed = 10f; // độ/giây
 
     private Rigidbody2D rb;
     private float dithang; // W/S
     private float rehuong; // A/D
-    private float currentSpeed;
+    private float tocdohientai;
 
 
 
@@ -29,24 +29,24 @@ public class dichuyen : MonoBehaviour
     {
         if (dithang != 0)
         {
-            currentSpeed += dithang * acceleration * Time.fixedDeltaTime;
+            tocdohientai += dithang * giatoc * Time.fixedDeltaTime;
         }
         else
         {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
+            tocdohientai = Mathf.MoveTowards(tocdohientai, 0, phanhxe * Time.fixedDeltaTime);
         }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
+        tocdohientai = Mathf.Clamp(tocdohientai, -maxSpeed, maxSpeed);
 
         // Rẽ trái/phải chỉ khi xe đang di chuyển
-        if (Mathf.Abs(currentSpeed) > 0.1f)
+        if (Mathf.Abs(tocdohientai) > 0.1f)
         {
-            float direction = currentSpeed > 0 ? 1 : -1; // rẽ ngược nếu đang lùi
-            transform.Rotate(Vector3.forward, -rehuong * turnSpeed * Time.fixedDeltaTime * direction);
+            float direction = tocdohientai > 0 ? 1 : -1; // rẽ ngược nếu đang lùi
+            transform.Rotate(Vector3.forward, -rehuong * turnSpeed * turnSpeed * Time.fixedDeltaTime * direction);
         }
 
         // Di chuyển theo hướng đầu xe
-        rb.velocity = transform.right * currentSpeed;
+        rb.velocity = transform.right * tocdohientai;
     }
 }
 
