@@ -42,7 +42,7 @@ public class dichuyen : MonoBehaviour
         if (Mathf.Abs(tocdohientai) > 0.1f)
         {
             float direction = tocdohientai > 0 ? 1 : -1; // rẽ ngược nếu đang lùi
-            transform.Rotate(Vector3.forward, -rehuong * turnSpeed * turnSpeed * Time.fixedDeltaTime * direction);
+            transform.Rotate(Vector3.forward, -rehuong * turnSpeed * Time.fixedDeltaTime * direction);
         }
 
         // Di chuyển theo hướng đầu xe
