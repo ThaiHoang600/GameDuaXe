@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dichuyen : MonoBehaviour
+public class ChayXe : MonoBehaviour
 {
+
     public float acceleration = 5;
     public float steering = 30;
     private Rigidbody2D rb;
@@ -65,5 +66,5 @@ public class dichuyen : MonoBehaviour
 
         rb.AddForce(rb.GetRelativeVector(relativeForce));
     }
-}
 
+}
