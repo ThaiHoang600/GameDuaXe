@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Thoigiangame : MonoBehaviour
 {
-    public float ThoigianGame = 30f;
+    public float ThoigianChoPhep = 30f;
     public bool Ketthuc = false;
     private static Thoigiangame instance;
+    public GameObject gameOverObject;
+    public GameObject timegameOverObject;
 
+    [SerializeField]
+    private float ThoiGianHoiCheckPoint = 180f;
     public static Thoigiangame Instance
     {
         get 
@@ -30,10 +34,12 @@ public class Thoigiangame : MonoBehaviour
     {
         if(!Ketthuc)
         {
-            ThoigianGame -= Time.deltaTime;
-            Debug.Log(ThoigianGame);
-            if(ThoigianGame <= 0)
+            ThoigianChoPhep -= Time.deltaTime;
+            Debug.Log(ThoigianChoPhep);
+            if(ThoigianChoPhep <= 0)
             {
+                timegameOverObject.SetActive(false);
+                gameOverObject.SetActive(true);
                 KetthucGame();
             }
         }
@@ -42,6 +48,12 @@ public class Thoigiangame : MonoBehaviour
     {
         Ketthuc = true;
     }
-
+    public void QuaCheckPoint()
+    {
+        if (!Ketthuc)
+        { 
+            ThoigianChoPhep = ThoiGianHoiCheckPoint; 
+        }
+    }
 }
 

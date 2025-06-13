@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI timeText;
+    private void Update()
     {
-        
+        HienThiThoiGian();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void HienThiThoiGian()
     {
-        
+        timeText.SetText(Mathf.FloorToInt(Thoigiangame.Instance.ThoigianChoPhep).ToString()); 
+    }
+    public void ChoiLai()
+    {
+        SceneManager.LoadScene("map1");
+    }
+    public void VeMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }
