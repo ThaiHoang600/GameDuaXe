@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rival
   - CheckPoint
+  - WinPoint
   layers:
   - Default
   - TransparentFX
